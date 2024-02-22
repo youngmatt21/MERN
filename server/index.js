@@ -20,5 +20,5 @@ mongoose
 
 app.use("/api/user/", require("./routes/auth"));
 
-// app.get("/", (req, res) => res.send("Hello World vercel!"));
+app.get("/", (req, res) => res.send("Hello World vercel!"));
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
