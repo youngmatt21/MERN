@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   //states
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+ const [formData, setFormData] = useState({
+   email: "",
+   password: "",
+ });
 
   const [errMsg, setErrMsg] = useState(false);
 
