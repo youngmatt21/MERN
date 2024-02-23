@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://mern-front-blush.vercel.app",
+    origin: "https://mern-vihv.onrender.com",
     credentials: true,
   })
 );
