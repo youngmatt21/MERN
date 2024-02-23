@@ -2,14 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 import { API_URL, PROD_URL } from "../../API";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   //states
- const [formData, setFormData] = useState({
-   email: "",
-   password: "",
- });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   const [errMsg, setErrMsg] = useState(false);
 
@@ -29,7 +29,7 @@ export default function Login() {
 
       const body = JSON.stringify(formData);
 
-      const res = await axios.post(`${API_URL}/api/user/login`, body, config);
+      const res = await axios.post(`${PROD_URL}/api/user/login`, body, config);
 
       if (res.status === 200) {
         navigate("/dashboard");
@@ -41,6 +41,8 @@ export default function Login() {
         error.response.data.message
       ) {
         setErrMsg(error.response.data.message);
+      } else {
+        console.error(error.response);
       }
     }
   }
@@ -57,6 +59,7 @@ export default function Login() {
         onSubmit={handleSubmit}
       >
         <h2>Log In</h2>
+        {errMsg ? <p>{errMsg}</p> : ""}
         <label htmlFor="email">Email</label>
         <input
           type="text"
@@ -77,6 +80,7 @@ export default function Login() {
         />
 
         <button type="submit">Log In</button>
+        <Link to={"/"}>Not a Member? Register</Link>
       </form>
     </div>
   );

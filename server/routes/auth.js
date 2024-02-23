@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
     const isPasswordMatch = await bcrypt.compare(password, user.password);
 
     if (!isPasswordMatch) {
-      return res.status(401).json({ message: "Wrong Password" });
+      return res.status(400).json({ message: "Wrong Password" });
     }
 
     // Generate JWT token

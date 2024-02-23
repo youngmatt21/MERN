@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { API_URL, PROD_URL } from "../../API";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 export default function Register() {
   const [formData, setFormData] = useState({
     firstname: "",
@@ -41,7 +41,7 @@ export default function Register() {
       // send Post request to server
 
       const res = await axios.post(
-        `${API_URL}/api/user/register`,
+        `${PROD_URL}/api/user/register`,
         body,
         config
       );
@@ -116,7 +116,10 @@ export default function Register() {
         />
 
         <button type="submit">SignUP</button>
+        <Link to={"/login"}>Already a Member? Login</Link>
       </form>
+
+      
 
       {loading ? <p>Loading....</p> : null}
     </div>
