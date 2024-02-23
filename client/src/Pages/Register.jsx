@@ -46,22 +46,21 @@ export default function Register() {
         config
       );
 
-      if (await res.data) {
-
+      if (res.status === 200) {
         setLoading(false);
-
         navigate("/login");
       }
-
-      // if (await res.data.message) {
-      //   setErrorMsg(json.stringify(res.data.message));
-      // }
-
-      console.log(res.data.message);
-
       setFormData({ firstname: "", lastname: "", email: "", password: "" });
     } catch (error) {
-      console.error(error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setErrorMsg(error.response.data.message);
+      } else {
+        console.error(error);
+      }
     }
   }
 
