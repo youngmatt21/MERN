@@ -41,7 +41,7 @@ export default function Register() {
       // send Post request to server
 
       const res = await axios.post(
-        `${PROD_URL}/api/user/register`,
+        `${API_URL}/api/user/register`,
         body,
         config
       );
