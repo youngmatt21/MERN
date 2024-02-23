@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: "https://mern-vihv.onrender.com",
-    credentials: true,
+    credentials: true, 
   })
 );
 const port = 5000;

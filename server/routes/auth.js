@@ -15,7 +15,7 @@ router.post("/register", async (req, res) => {
     let user = await User.findOne({ email });
 
     if (user) {
-      res.status(400).json({ message: "User Already Exists" });
+      return res.status(400).json({ message: "User Already Exists" });
     }
 
     user = new User({ firstname, lastname, email, password });
@@ -26,7 +26,7 @@ router.post("/register", async (req, res) => {
 
     user.password =await bcrypt.hash(password, salt);
 
-    user.save();
+    await user.save();
 
     // jwt token
 
@@ -37,10 +37,10 @@ router.post("/register", async (req, res) => {
     jwt.sign(payload, "jwtSecret", { expiresIn: 3600 }, (err, token) => {
       if (err) throw err;
 
-      res.json(token);
+     return  res.json(token);
     });
   } catch (error) {
-    res.status(500).send("server error");
+    return res.status(500).send("server error");
   }
 });
 
