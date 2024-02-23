@@ -7,10 +7,17 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://mern-vihv.onrender.com",
-    credentials: true, 
+    origin: [
+      "https://mern-vihv.onrender.com",
+      "https://mern-front-blush.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
+
+
 const port = 5000;
 
 // Database configuration
@@ -20,6 +27,8 @@ mongoose
   .connect(URI)
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log(err));
+
+
 
 //routes defination
 
