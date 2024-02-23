@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { API_URL } from "../../API";
+import { API_URL, PROD_URL } from "../../API";
 export default function Register() {
   const [formData, setFormData] = useState({
     firstname: "",
@@ -32,7 +32,7 @@ export default function Register() {
       // send Post request to server
 
       const res = await axios.post(
-        `${API_URL}/api/user/register`,
+        `${PROD_URL}/api/user/register`,
         body,
         config
       );
