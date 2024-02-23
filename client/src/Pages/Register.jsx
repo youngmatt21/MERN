@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { API_URL, PROD_URL } from "../../API";
+import { useNavigate } from "react-router-dom";
 export default function Register() {
   const [formData, setFormData] = useState({
     firstname: "",
@@ -9,12 +10,20 @@ export default function Register() {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
+  const [errorMsg, setErrorMsg] = useState(false);
+
+  const navigate = useNavigate();
+
   //destructure formData
 
   const { firstname, lastname, email, password } = formData;
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    setLoading(true);
 
     try {
       //header configuration
@@ -37,7 +46,18 @@ export default function Register() {
         config
       );
 
-      console.log(res.data);
+      if (await res.data) {
+
+        setLoading(false);
+
+        navigate("/login");
+      }
+
+      // if (await res.data.message) {
+      //   setErrorMsg(json.stringify(res.data.message));
+      // }
+
+      console.log(res.data.message);
 
       setFormData({ firstname: "", lastname: "", email: "", password: "" });
     } catch (error) {
@@ -56,6 +76,7 @@ export default function Register() {
         }}
         onSubmit={handleSubmit}
       >
+        {errorMsg ? <p>{errorMsg}</p> : "null"}
         <label htmlFor="firsname">Firstname</label>
         <input
           type="text"
@@ -95,6 +116,8 @@ export default function Register() {
 
         <button type="submit">SignUP</button>
       </form>
+
+      {loading ? <p>Loading....</p> : null}
     </div>
   );
 }
