@@ -10,6 +10,7 @@ app.use(
     origin: [
       "https://mern-vihv.onrender.com",
       "https://mern-front-blush.vercel.app",
+      "http://localhost:5173",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],

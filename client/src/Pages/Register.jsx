@@ -58,8 +58,10 @@ export default function Register() {
         error.response.data.message
       ) {
         setErrorMsg(error.response.data.message);
+        setLoading(false);
       } else {
         console.error(error);
+        setLoading(false);
       }
     }
   }
