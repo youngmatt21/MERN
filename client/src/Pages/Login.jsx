@@ -29,7 +29,7 @@ export default function Login() {
 
       const body = JSON.stringify(formData);
 
-      const res = await axios.post(`${PROD_URL}/api/user/login`, body, config);
+      const res = await axios.post(`${API_URL}/api/user/login`, body, config);
 
       if (res.status === 200) {
         navigate("/dashboard");
